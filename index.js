@@ -36,8 +36,8 @@ const emolize = (words) => {
                 let maxSim = 0.2 // 0.2より大きければ採用
                 let maxEmoji = ''
                 for (let emoji of emojis) {
-                    if (surface == emoji) {
-                        maxEmoji = emojis.surface
+                    if (surface == emoji.name) {
+                        maxEmoji = emoji.surface
                         break
                     }
                     let sim = model.similarity(basic, emoji.name)
