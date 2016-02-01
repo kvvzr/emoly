@@ -55,4 +55,8 @@ export default [
     surface: '🐧',
     name: 'ペンギン',
 },
+{
+    surface: '🌸',
+    name: '桜',
+},
 ]
