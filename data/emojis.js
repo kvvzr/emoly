@@ -47,4 +47,12 @@ export default [
     surface: '🙋',
     name: 'はい',
 },
+{
+    surface: '🐥',
+    name: 'ヒヨコ',
+},
+{
+    surface: '🐧',
+    name: 'ペンギン',
+},
 ]
