@@ -12,7 +12,7 @@ export default [
     name: '星',
 },
 {
-    surface: '♡',
+    surface: '❤',
     name: 'ハート',
 },
 {
