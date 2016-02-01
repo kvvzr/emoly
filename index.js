@@ -1,13 +1,10 @@
 import kuromoji from 'kuromoji'
 import w2v from 'word2vec'
+
+import emojis from './emojis'
  
 const dicPath = 'node_modules/kuromoji/dist/dict/'
-const modelPath = 'node_modules/word2vec/src/vectors.txt'
-const emojis = {
-    'to': '😖',
-    'the': 'nya',
-    'The': 'Piyo'
-}
+const modelPath = 'data/wiki.txt'
 
 const tokenize = (text) => {
     return new Promise((resolve, reject) => {
@@ -30,30 +27,39 @@ const emolize = (words) => {
             let text = ''
             for (let word of words) {
                 let surface = word['surface_form']
-                let maxSim = 0;
-                let maxEmoji = '';
-                for (let key in emojis) {
-                    if (surface == key) {
-                        maxEmoji = emojis[key]
+                let basic = word['basic_form'] == '*' ? surface : word['basic_form']
+                if (surface == ' ') {
+                    text += surface
+                    continue
+                }
+
+                let maxSim = 0.2 // 0.2より大きければ採用
+                let maxEmoji = ''
+                for (let emoji of emojis) {
+                    if (surface == emoji) {
+                        maxEmoji = emojis.surface
                         break
                     }
-                    let sim = model.similarity(surface, key)
-                    console.log(surface, key, sim)
+                    let sim = model.similarity(basic, emoji.name)
                     if (maxSim < sim) {
                         maxSim = sim
-                        maxEmoji = emojis[key]
+                        maxEmoji = emoji.surface
                     }
                 }
                 text += surface
-                text += maxEmoji
+                if (maxEmoji) {
+                    text += maxEmoji + ' '
+                }
             }
             resolve(text)
         })
     })
 }
 
-tokenize('of The')
-    .then(emolize)
-    .then(console.log)
-    .catch(console.log)
+if (process.argv.length == 3) {
+    tokenize(process.argv[2])
+        .then(emolize)
+        .then(console.log)
+        .catch(console.log)
+}
 
