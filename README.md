@@ -14,3 +14,7 @@ $ npm install
 ```
 $ npm run emoly 'どんぐりころころ どんぶりこ'
 ```
+
+![](images/result.png)
+
+まだemojiのデータを揃えていなかったり、色々未調整のままなのであまり良くない
