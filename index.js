@@ -2,7 +2,7 @@ import kuromoji from 'kuromoji'
 import readline from 'readline'
 import w2v from 'word2vec'
 
-import emojis from './emojis'
+import emojis from './data/emojis'
  
 const dicPath = 'node_modules/kuromoji/dist/dict/'
 const modelPath = 'data/wiki.txt'
