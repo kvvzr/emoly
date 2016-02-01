@@ -6,6 +6,7 @@ import emojis from './data/emojis'
  
 const dicPath = 'node_modules/kuromoji/dist/dict/'
 const modelPath = 'data/wiki.txt'
+const allowPos = ['名詞', '動詞', '形容詞', '副詞']
 
 const loop = (fn) => {
     fn().then(() => { loop(fn) })
@@ -51,9 +52,10 @@ const emolize = (model, words) => {
     return new Promise((resolve, reject) => {
         let text = ''
         for (let word of words) {
+            let pos = word['pos']
             let surface = word['surface_form']
             let basic = word['basic_form'] == '*' ? surface : word['basic_form']
-            if (surface == ' ') {
+            if (allowPos.indexOf(pos) == -1 || surface == ' ') {
                 text += surface
                 continue
             }
