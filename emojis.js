@@ -39,4 +39,12 @@ export default [
     surface: '👊',
     name: 'グー',
 },
+{
+    surface: '🙋',
+    name: 'はーい',
+},
+{
+    surface: '🙋',
+    name: 'はい',
+},
 ]
