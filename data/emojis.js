@@ -63,4 +63,52 @@ export default [
     surface: '🗾',
     name: '日本',
 },
+{
+    surface: '🍉',
+    name: 'スイカ',
+},
+{
+    surface: '😈',
+    name: '悪魔',
+},
+{
+    surface: '👻',
+    name: 'お化け',
+},
+{
+    surface: '🙅',
+    name: 'ダメ',
+},
+{
+    surface: '😇',
+    name: '天国',
+},
+{
+    surface: '👼',
+    name: '天使',
+},
+{
+    surface: '💥',
+    name: '衝突',
+},
+{
+    surface: '🍣',
+    name: '寿司',
+},
+{
+    surface: '😂',
+    name: '笑顔',
+},
+{
+    surface: '👮',
+    name: '警官',
+},
+{
+    surface: '💃',
+    name: 'ダンス',
+},
+{
+    surface: '📕',
+    name: '本',
+},
 ]
