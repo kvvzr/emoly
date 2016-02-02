@@ -68,6 +68,9 @@ const joinTokens = (tokens) => {
             }
             result.push(token)
         }
+        if (verb) {
+            result.push(verb)
+        }
         resolve(result)
     })
 }
