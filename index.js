@@ -48,6 +48,30 @@ const tokenize = (text) => {
     })
 }
 
+const joinTokens = (tokens) => {
+    return new Promise((resolve, reject) => {
+        let result = []
+        let verb = null
+        for (let token of tokens) {
+            let pos = token['pos']
+            if (verb && (pos == '助詞' || pos == '助動詞')) {
+                verb['surface_form'] += token['surface_form']
+                continue
+            }
+            if (pos == '動詞') {
+                verb = token
+                continue
+            }
+            if (verb) {
+                result.push(verb)
+                verb = null
+            }
+            result.push(token)
+        }
+        resolve(result)
+    })
+}
+
 const emolize = (model, words) => {
     return new Promise((resolve, reject) => {
         let text = ''
@@ -55,7 +79,7 @@ const emolize = (model, words) => {
             let pos = word['pos']
             let surface = word['surface_form']
             let basic = word['basic_form'] == '*' ? surface : word['basic_form']
-            if (allowPos.indexOf(pos) == -1 || surface == ' ') {
+            if (allowPos.indexOf(pos) == -1 || pos == '記号') {
                 text += surface
                 continue
             }
@@ -87,6 +111,7 @@ loadModel()
         loop(() => {
             return inputLyrics()
                 .then(tokenize)
+                .then(joinTokens)
                 .then((words) => { return emolize(model, words) })
                 .then(console.log)
         })
